@@ -4,7 +4,7 @@
   "description": "Desafio backend do BTG Pactual",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/main/index.js",
+    "start": "node dist/infra/main.js",
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p tsconfig-build.json",
     "lint": "eslint .",
@@ -14,6 +14,7 @@
     "test:coverage": "npm t -- --coverage"
   },
   "dependencies": {
+    "@prisma/client": "^5.15.1",
     "@types/cors": "^2.8.13",
     "cors": "^2.8.5",
     "express": "^4.17.1",
