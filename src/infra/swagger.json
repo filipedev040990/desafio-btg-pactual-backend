@@ -1,0 +1,198 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Desafio backend BTG Pactual",
+      "description": "API desenvolvida para prática de desenvolvimento de API REST",
+      "version": "1.0.0",
+      "contact": {
+         "email": "filipedev040990@gmail.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "/v1"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Orders"
+      }
+    ],
+    "paths": {
+      "/order/{identifier}/totalValue": {
+        "get": {
+          "tags": [
+            "Orders"
+          ],
+          "operationId": "get-order-identifier",
+          "summary": "Retorna valor total do pedido de acordo com o identificador informado.",
+          "description": "Rota que retorna valor total do pedido de acordo com o identificador informado.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "identifier",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "U0YA6T-1697468838547"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "totalValue": {
+                        "type": "number",
+                        "example": 1900
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "example": "error"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/order/{clientId}/totalOrders": {
+        "get": {
+          "tags": [
+            "Orders"
+          ],
+          "summary": "Retorna o total de pedidos de um cliente.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "clientId",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "1697468838547"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "number",
+                    "example": 10 
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "example": "error"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/order/{clientId}/orders": {
+        "get": {
+          "tags": [
+            "Orders"
+          ],
+          "description": "Retorna informações dos pedidos de um cliente.",
+          "summary": "Rota que retorna informações dos pedidos de um cliente.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "clientId",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "1697468838547"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "beaa6021-2303-4ea8-9368-ec25c5485ca0",
+                              "description": "Este é o identificador do pedido"
+                            },
+                            "identifier": {
+                              "type": "string",
+                              "example": "A397HE-1719256645868",
+                              "description": "Identificador único do pedido"
+                            },
+                            "clientId": {
+                              "type": "string",
+                              "example": "1697468838547",
+                              "description": "Id do cliente"
+                            }
+                          }
+                        }
+                      ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "example": "error"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

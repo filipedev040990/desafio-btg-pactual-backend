@@ -1,0 +1,52 @@
+{
+    "exchanges": [
+        {
+            "name": "orders",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false
+        }
+    ],
+    "queues": [
+        {
+            "name": "created_order",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false
+        }
+    ],
+    "bindings": [
+        {
+            "source": "orders",
+            "vhost": "/",
+            "destination_type": "queue",
+            "destination": "created_order",
+            "routing_key": "created_order"
+        }
+    ],
+    "users": [
+        {
+            "name": "admin",
+            "password": "admin",
+            "tags": [
+                "administrator"
+            ],
+            "limits": {}
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "admin",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ]
+}
