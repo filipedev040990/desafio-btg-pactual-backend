@@ -1,5 +1,5 @@
 import { InvalidParamError, MissingParamError } from '@/shared/errors'
-import { GetOrderTotalValue } from './get-order-total-value'
+import { GetOrderTotalValue } from './get-order-total-value.usecase'
 import { mock } from 'jest-mock-extended'
 import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order.repository.interface'
 

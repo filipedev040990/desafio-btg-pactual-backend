@@ -1,5 +1,5 @@
 import { mock } from 'jest-mock-extended'
-import { GetByClient } from './get-by-client'
+import { GetByClient } from './get-by-client.usecase'
 import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order.repository.interface'
 import { InvalidParamError } from '@/shared/errors'
 
