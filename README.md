@@ -64,6 +64,12 @@ Após publicar a mensagem nesta `exchange`, a mesma será encaminhada para as fi
 
 ---
 
+## Logs 🖥
+Sempre que o serviço ler uma mensagem da fila, ele emitirá um log com informações sobre.
+![alt text](image-2.png)
+
+---
+
 ## 🧩 Swagger
 É possível acessar a documentação da API pelo [Swagger da API](http://localhost:3000/api-docs) e simular os endpoints
 
