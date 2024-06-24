@@ -44,7 +44,6 @@ describe('OrderEntity', () => {
 
   test('should generate a valid order identifier with expected length and format', () => {
     const orderNumber: string = sut.identifierGenerate()
-
     // Verifica se o número de pedido tem o comprimento esperado
     expect(orderNumber.length).toBeGreaterThan(0)
     expect(orderNumber.length).toBeLessThanOrEqual(20) // comprimento máximo possível do número de pedido (6 caracters alfanumericos + hifen + 13 numeros to timestamp)
@@ -56,9 +55,7 @@ describe('OrderEntity', () => {
 
   test('should make a correct Order Entity', () => {
     jest.spyOn(sut, 'identifierGenerate').mockReturnValueOnce('anyOrderNumber')
-
     const order = sut.build(input)
-
     expect(order).toEqual({
       id: 'AnyId',
       identifier: 'anyOrderNumber',

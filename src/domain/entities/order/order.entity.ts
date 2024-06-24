@@ -1,6 +1,10 @@
 import { MissingParamError } from '@/shared/errors'
-import { CreateOrderInput } from './order.entity.types'
 import { randomUUID } from 'crypto'
+
+export type CreateOrderInput = {
+  clientId: string
+  totalValue: number
+}
 
 export class OrderEntity {
   constructor (
