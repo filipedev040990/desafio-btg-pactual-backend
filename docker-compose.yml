@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  order:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'order'
+    restart: always
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    command: bash -c "npm install && npm run build && npx prisma generate && npx prisma migrate deploy && npm start"
+    depends_on:
+      - database
+      - rabbitmq
+
+  database:
+    image: mysql:8.0
+    container_name: database
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_password}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-dbname}
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - ./data:/var/lib/rabbitmq/data/
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./definitions.json:/etc/rabbitmq/definitions.json
+
+networks:
+  default:
+    name: local
