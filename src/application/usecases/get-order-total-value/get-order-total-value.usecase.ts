@@ -2,7 +2,7 @@ import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order
 import { InvalidParamError, MissingParamError } from '@/shared/errors'
 import { isValidString } from '@/shared/helpers/string.helper'
 
-export class GetOrderTotalValue {
+export class GetOrderTotalValueUseCase {
   constructor (private readonly orderRepository: OrderRepositoryInterface) {}
   async execute (identifier: string): Promise<{totalValue: number}> {
     if (!isValidString(identifier)) {

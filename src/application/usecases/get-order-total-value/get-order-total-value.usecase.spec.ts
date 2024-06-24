@@ -1,5 +1,5 @@
 import { InvalidParamError, MissingParamError } from '@/shared/errors'
-import { GetOrderTotalValue } from './get-order-total-value.usecase'
+import { GetOrderTotalValueUseCase } from './get-order-total-value.usecase'
 import { mock } from 'jest-mock-extended'
 import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order.repository.interface'
 
@@ -12,12 +12,12 @@ const fakeOrder = {
   createdAt: new Date()
 }
 
-describe('GetOrderTotalValue', () => {
-  let sut: GetOrderTotalValue
+describe('GetOrderTotalValueUseCase', () => {
+  let sut: GetOrderTotalValueUseCase
   let identifier: any
 
   beforeEach(() => {
-    sut = new GetOrderTotalValue(orderRepository)
+    sut = new GetOrderTotalValueUseCase(orderRepository)
     identifier = 'anyIdentifier'
     orderRepository.getByIdentifier.mockResolvedValue(fakeOrder)
   })

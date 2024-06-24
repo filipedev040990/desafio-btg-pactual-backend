@@ -1,5 +1,5 @@
-import { ForbiddenError, UnauthorizedError } from '@/shared/errors'
 import { HttpResponse } from '@/shared/types'
+import { logger } from './logger.helper'
 
 export const success = (statusCode: number, body: any): HttpResponse => ({
   statusCode,
@@ -8,20 +8,19 @@ export const success = (statusCode: number, body: any): HttpResponse => ({
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
-  body: error
+  body: {
+    error: error.name,
+    message: error.message
+  }
 })
 
-export const unauthorized = (): HttpResponse => ({
-  statusCode: 401,
-  body: new UnauthorizedError()
-})
-
-export const forbiddenError = (): HttpResponse => ({
-  statusCode: 403,
-  body: new ForbiddenError()
-})
-
-export const serverError = (error: Error): HttpResponse => ({
-  statusCode: 500,
-  body: error
-})
+export const serverError = (error: Error): HttpResponse => {
+  logger.error(error)
+  return {
+    statusCode: 500,
+    body: {
+      error: error.name,
+      message: error.message
+    }
+  }
+}
