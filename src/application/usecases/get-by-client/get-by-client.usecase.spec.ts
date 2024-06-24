@@ -1,5 +1,5 @@
 import { mock } from 'jest-mock-extended'
-import { GetByClient } from './get-by-client.usecase'
+import { GetByClientUseCase } from './get-by-client.usecase'
 import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order.repository.interface'
 import { InvalidParamError } from '@/shared/errors'
 
@@ -17,12 +17,12 @@ const fakeOrder = [{
   totalValue: 50000,
   createdAt: new Date()
 }]
-describe('GetByClient', () => {
-  let sut: GetByClient
+describe('GetByClientUseCase', () => {
+  let sut: GetByClientUseCase
   let clientId: any
 
   beforeEach(() => {
-    sut = new GetByClient(orderRepository)
+    sut = new GetByClientUseCase(orderRepository)
     clientId = 'anyClientId'
     orderRepository.getByClientId.mockResolvedValue(fakeOrder)
   })

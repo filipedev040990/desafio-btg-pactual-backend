@@ -1,7 +1,7 @@
-import { mock } from 'jest-mock-extended'
-import { CountByClient } from './count-by-client'
+import { CountByClientUseCase } from './count-by-client.usecase'
 import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order.repository.interface'
 import { InvalidParamError } from '@/shared/errors'
+import { mock } from 'jest-mock-extended'
 
 const orderRepository = mock<OrderRepositoryInterface>()
 const fakeOrder = [{
@@ -17,12 +17,12 @@ const fakeOrder = [{
   totalValue: 50000,
   createdAt: new Date()
 }]
-describe('CountByClient', () => {
-  let sut: CountByClient
+describe('CountByClientUseCase', () => {
+  let sut: CountByClientUseCase
   let clientId: any
 
   beforeEach(() => {
-    sut = new CountByClient(orderRepository)
+    sut = new CountByClientUseCase(orderRepository)
     clientId = 'anyClientId'
     orderRepository.getByClientId.mockResolvedValue(fakeOrder)
   })
