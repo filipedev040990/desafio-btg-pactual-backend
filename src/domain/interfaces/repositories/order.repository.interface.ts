@@ -9,4 +9,5 @@ export type OrderRepositoryData = {
 export interface OrderRepositoryInterface {
   create: (input: OrderRepositoryData) => Promise<void>
   getByIdentifier: (identifier: string) => Promise <OrderRepositoryData | null>
+  getByClientId: (clientId: string) => Promise<OrderRepositoryData []>
 }
