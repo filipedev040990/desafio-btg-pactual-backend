@@ -1,5 +1,5 @@
 import { mock } from 'jest-mock-extended'
-import { CountByClient } from './count-by-client'
+import { GetByClient } from './get-by-client'
 import { OrderRepositoryInterface } from '@/domain/interfaces/repositories/order.repository.interface'
 import { InvalidParamError } from '@/shared/errors'
 
@@ -17,12 +17,12 @@ const fakeOrder = [{
   totalValue: 50000,
   createdAt: new Date()
 }]
-describe('CountByClient', () => {
-  let sut: CountByClient
+describe('GetByClient', () => {
+  let sut: GetByClient
   let clientId: any
 
   beforeEach(() => {
-    sut = new CountByClient(orderRepository)
+    sut = new GetByClient(orderRepository)
     clientId = 'anyClientId'
     orderRepository.getByClientId.mockResolvedValue(fakeOrder)
   })
@@ -41,6 +41,6 @@ describe('CountByClient', () => {
 
   test('should return a correct output', async () => {
     const output = await sut.execute(clientId)
-    expect(output).toBe(2)
+    expect(output).toEqual(fakeOrder)
   })
 })
