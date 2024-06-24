@@ -1,4 +1,4 @@
-export type CreateOrderRepositoryInput = {
+export type OrderRepositoryData = {
   id: string
   identifier: string
   clientId: string
@@ -7,5 +7,6 @@ export type CreateOrderRepositoryInput = {
 }
 
 export interface OrderRepositoryInterface {
-  create: (input: CreateOrderRepositoryInput) => Promise<void>
+  create: (input: OrderRepositoryData) => Promise<void>
+  getByIdentifier: (identifier: string) => Promise <OrderRepositoryData | null>
 }
